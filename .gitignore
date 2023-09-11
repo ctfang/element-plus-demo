@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+.run
+.env
+# routes
+# generate
+# _gen.go
+_gen.json
+build/
