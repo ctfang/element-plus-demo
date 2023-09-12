@@ -15,7 +15,7 @@
 </div>
 
 <script>
-    function initLayout() {
+    (function (){
         let layoutHeader = Vue.createApp({
             data() {
                 return {
@@ -31,6 +31,5 @@
             layoutHeader.component(name, comp);
         }
         layoutHeader.mount('#layout-header');
-    }
-    initLayout();
+    })()
 </script>
