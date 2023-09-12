@@ -16,9 +16,9 @@
 <div id="app">
     <div class="main-layout">
         <el-container>
-            <el-aside class="aside">Aside</el-aside>
+            <el-aside v-remote-load="'layout/sidebar.html'" width="230px"></el-aside>
             <el-container>
-                <el-header class="header">Header</el-header>
+                <el-header v-remote-load="'layout/header.html'"></el-header>
                 <el-main v-remote-load="main" class="main"></el-main>
             </el-container>
         </el-container>
@@ -40,7 +40,7 @@
         methods: {
             async loadMainContent() {
                 try {
-                    $('.el-main').load(this.MainUrl);
+                    $('.el-main').load(this.main + "?_t=" + new Date().valueOf());
                 } catch (error) {
                     console.error('Error loading main content', error);
                 }
@@ -51,7 +51,7 @@
     app.directive('remote-load', {
         async mounted(el, binding) {
             try {
-                $(el).load(binding.value);
+                $(el).load(binding.value + "?_t=" + new Date().valueOf());
             } catch (error) {
                 console.error('Error loading remote content', error);
             }

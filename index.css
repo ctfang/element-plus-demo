@@ -15,7 +15,7 @@ body,
 
 /* 背景颜色 */
 .aside{
-    background-color: pink;
+
 }
 .main{
     min-height: calc(100vh - 50px);
