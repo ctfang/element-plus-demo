@@ -1,0 +1,26 @@
+/* 手动配置全局样式 */
+html,
+body,
+.main-layout,
+.el-container{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+#app{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+/* 背景颜色 */
+.aside{
+    background-color: pink;
+}
+.main{
+    min-height: calc(100vh - 50px);
+    background-color: forestgreen;
+}
+.header{
+    background-color: aqua;
+}

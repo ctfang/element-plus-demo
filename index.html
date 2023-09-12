@@ -6,6 +6,7 @@
     <title>小型界面 demo</title>
     <script src="modules/element-plus@2.3.1/index.full.min.js"></script>
     <link rel="stylesheet" href="modules/element-plus@2.3.1/index.css">
+    <link rel="stylesheet" href="index.css">
     <script src="modules/icons-vue/index.iife.min.js"></script>
     <script src="modules/jquery@3.6.4/jquery.min.js"></script>
     <script src="modules/axios@1.5.0/axios.min.js"></script>
@@ -13,12 +14,12 @@
 </head>
 <body>
 <div id="app">
-    <div class="common-layout">
+    <div class="main-layout">
         <el-container>
-            <el-header>Header</el-header>
+            <el-aside class="aside">Aside</el-aside>
             <el-container>
-                <el-aside width="200px">Aside</el-aside>
-                <el-main v-remote-load="'views/main/default.html'"></el-main>
+                <el-header class="header">Header</el-header>
+                <el-main v-remote-load="main" class="main"></el-main>
             </el-container>
         </el-container>
     </div>
@@ -27,7 +28,7 @@
     const app = Vue.createApp({
         data() {
             return {
-                MainUrl: "pages/default.html"
+                main: "views/main/default.html"
             };
         },
         watch: {
@@ -39,8 +40,7 @@
         methods: {
             async loadMainContent() {
                 try {
-                    const elMain = $('.el-main');
-                    elMain.load(this.MainUrl);
+                    $('.el-main').load(this.MainUrl);
                 } catch (error) {
                     console.error('Error loading main content', error);
                 }
@@ -50,17 +50,15 @@
 
     app.directive('remote-load', {
         async mounted(el, binding) {
-            const remoteUrl = binding.value;
-
             try {
-                $(el).load(remoteUrl);
+                $(el).load(binding.value);
             } catch (error) {
                 console.error('Error loading remote content', error);
             }
         }
     });
 
-    app.mount('#app')
+    app.use(ElementPlus).mount('#app')
 </script>
 </body>
 </html>
